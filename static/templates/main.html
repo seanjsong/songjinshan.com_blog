@@ -1,0 +1,10 @@
+<% _.each(articles, function(article) { %>
+<div class="article">
+  <div class="author">
+    <div title="<%= (new Date(article.mtime)).toLocaleString() %>" class="date"><%= (new Date(article.mtime)).toLocaleDateString() %></div>
+  </div>
+  <h3><a href="#!/<%= article.category %>/<%= article.slug %>/"><%= article.title %></a></h3>
+  <%= article.excerpt %>
+  <a href="#!/<%= article.category %>/<%= article.slug %>/" class="more">Read more...</a>
+</div>
+<% }); %>

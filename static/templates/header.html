@@ -1,0 +1,6 @@
+<a href="#/"><h1>Sean's Blog</h1></a>
+<ul>
+  <% _.each(categories, function(category) { %>
+  <li><a href="#!/<%= category[0] %>/"><%= category[0] %>(<%= category[1] %>)</a></li>
+  <% }); %>
+</ul>
