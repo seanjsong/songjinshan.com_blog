@@ -3,7 +3,7 @@ define([
   'backbone'
 ], function(_, Backbone) {
   var Categories = Backbone.Model.extend({
-    url: '/blog/api/categories/'
+    url: 'api/categories/'
   });
   return Categories;
 });

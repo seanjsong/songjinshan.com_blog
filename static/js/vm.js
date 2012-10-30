@@ -1,4 +1,3 @@
-// Use this as a quick template for future modules
 define([
   'jquery',
   'underscore',
@@ -25,7 +24,6 @@ define([
     Events.trigger('viewCreated');
     return view;
   };
-  
   
   return {
     create: create

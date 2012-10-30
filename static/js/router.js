@@ -1,4 +1,3 @@
-// Filename: router.js
 define([
   'jquery',
   'underscore',
@@ -7,12 +6,9 @@ define([
 ], function ($, _, Backbone, Vm) {
   var AppRouter = Backbone.Router.extend({
     routes: {
-      // Pages
       '!/:category/': 'category',
       '!/:category/:slug/': 'article',
-      
-      // Default - catch all
-      '*actions': 'defaultAction'
+      '*actions': 'defaultAction' // Default - catch all
     }
   });
 

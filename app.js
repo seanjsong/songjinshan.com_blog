@@ -9,7 +9,6 @@ app.configure(function() {
   app.use('/blog', mdblog('/blog', __dirname + '/articles', __dirname + '/static'));
 });
 
-http.createServer(app).listen(app.get('port'), function(){
+http.createServer(app).listen(app.get('port'), function() {
   console.log("Express server listening on port " + app.get('port'));
 });
-
