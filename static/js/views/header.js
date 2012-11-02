@@ -14,7 +14,15 @@ define([
       var tmpl = this.template;
       this.model.fetch({success: function (model, response) {
         el.html(tmpl(response));
+        $('a[href="' + window.location.hash + '"]').addClass('active');
       }});
+    },
+    events: {
+      'click a': 'highlightMenuItem'
+    },
+    highlightMenuItem: function (ev) {
+      $('.active').removeClass('active');
+      $(ev.currentTarget).addClass('active');
     }
   });
 

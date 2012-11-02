@@ -15,6 +15,7 @@ define([
       var el = $(this.el);
       var tmpl = this.template;
       this.model.fetch({success: function (model, response) {
+        $('html head title').text('Sean\'s Blog - ' + response.article.title);
         el.html(tmpl(response));
         SyntaxHighlighter.config.tagName = 'code';
         SyntaxHighlighter.highlight();
