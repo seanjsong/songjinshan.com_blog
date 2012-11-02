@@ -5,18 +5,12 @@ define([
 ], function($, _, Backbone){
   var Articles = Backbone.Collection.extend({
     url: function () {
-      return 'api/articles/' + (this.category ? this.category + '/' : '')
-        + (this.month ? '?month=' + this.month.toISOString().substring(0,7) : '');
+      return 'api/articles/' + (this.category ? this.category + '/' : '') + '?page=' + this.page;
     },
     parse: function(resp, xhr) {
       return resp.articles;
     },
-    month: null,
-    previousMonth: function() {
-      if (!this.month)
-        this.month = new Date();
-      this.month.setMonth(this.month.getMonth()-1);
-    }
+    page: 1
   });
   return Articles;
 });
