@@ -6,20 +6,22 @@ define([
   'text!templates/article.html'
 ], function($, _, Backbone, Article, articleTemplate){
   var ArticleView = Backbone.View.extend({
-    initialize: function () {
+    initialize: function() {
       this.model = new Article({ category: this.options.category, slug: this.options.slug });
     },
     template: _.template(articleTemplate),
     el: '#main',
-    render: function () {
-      var el = $(this.el);
-      var tmpl = this.template;
-      this.model.fetch({success: function (model, response) {
-        $('html head title').text('Sean\'s Blog - ' + response.article.title);
-        el.html(tmpl(response));
-        SyntaxHighlighter.config.tagName = 'code';
-        SyntaxHighlighter.highlight();
-      }});
+    render: function() {
+      this.model.fetch(
+        {success:
+         _.bind(function(model, response) {
+           $('html head title').text('Sean\'s Blog - ' + response.article.title);
+           this.$el.html(this.template(response));
+           SyntaxHighlighter.config.tagName = 'code';
+           SyntaxHighlighter.highlight();
+         }, this)
+        }
+      );
     }
   });
 

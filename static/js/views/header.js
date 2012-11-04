@@ -9,18 +9,20 @@ define([
     model: new Categories(),
     template: _.template(headerTemplate),
     el: '#header',
-    render: function () {
-      var el = $(this.el);
-      var tmpl = this.template;
-      this.model.fetch({success: function (model, response) {
-        el.html(tmpl(response));
-        $('a[href="' + window.location.hash + '"]').addClass('active');
-      }});
+    render: function() {
+      this.model.fetch(
+        {success:
+         _.bind(function(model, response) {
+           this.$el.html(this.template(response));
+           $('a[href="' + window.location.hash + '"]').addClass('active');
+         }, this)
+        }
+      );
     },
     events: {
       'click a': 'highlightMenuItem'
     },
-    highlightMenuItem: function (ev) {
+    highlightMenuItem: function(ev) {
       $('.active').removeClass('active');
       $(ev.currentTarget).addClass('active');
     }

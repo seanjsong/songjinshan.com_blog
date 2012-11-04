@@ -4,7 +4,7 @@ define([
   'backbone'
 ], function($, _, Backbone){
   var Articles = Backbone.Collection.extend({
-    url: function () {
+    url: function() {
       return 'api/articles/' + (this.category ? this.category + '/' : '') + '?page=' + this.page;
     },
     parse: function(resp, xhr) {

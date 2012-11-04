@@ -5,8 +5,7 @@ define([
   'events'
 ], function($, _, Backbone, Events){
   var views = {};
-  var create = function (context, name, View, options) {
-    // View clean up isn't actually implemented yet but will simply call .clean, .remove and .unbind
+  var create = function(context, name, View, options) {
     if(typeof views[name] !== 'undefined') {
       views[name].undelegateEvents();
       if(typeof views[name].clean === 'function') {
