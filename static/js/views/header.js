@@ -14,7 +14,7 @@ define([
         {success:
          _.bind(function(model, response) {
            this.$el.html(this.template(response));
-           $('a[href="' + window.location.hash + '"]').addClass('active');
+           $('a[href="' + window.location.hash + '"]').addClass('currentCategory');
          }, this)
         }
       );
@@ -23,8 +23,8 @@ define([
       'click a': 'highlightMenuItem'
     },
     highlightMenuItem: function(ev) {
-      $('.active').removeClass('active');
-      $(ev.currentTarget).addClass('active');
+      $('.currentCategory').removeClass('currentCategory');
+      $(ev.currentTarget).addClass('currentCategory');
     }
   });
 

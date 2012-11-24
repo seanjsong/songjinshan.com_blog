@@ -1,8 +1,9 @@
 <% _.each(articles, function(article) { %>
 <div class="article">
   <div title="<%= (new Date(article.get('mtime'))).toLocaleString() %>" class="date"><%= (new Date(article.get('mtime'))).toLocaleDateString() %></div>
-  <h3><a href="#!/<%= article.get('category') %>/<%= article.get('slug') %>/"><%= article.get('title') %></a></h3>
+  <h1><a href="#!/<%= article.get('category') %>/<%= article.get('slug') %>/"><%= article.get('title') %></a></h1>
   <%= article.get('excerpt') %>
-  <div class="more"><a href="#!/<%= article.get('category') %>/<%= article.get('slug') %>/" class="more">Read more...</a></div>
+  <div><a href="#!/<%= article.get('category') %>/<%= article.get('slug') %>/" class="more">read more »</a></div>
 </div>
 <% }); %>
+<a id="showEarlier">Show earlier articles »</a>

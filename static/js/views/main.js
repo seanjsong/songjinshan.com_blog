@@ -21,34 +21,30 @@ define([
 
     loadResults: function() {
       this.isLoading = true;
+      $('#showEarlier').replaceWith('<img id="loading" src="images/loading_transparent.gif"/>');
       this.articles.fetch(
         {success:
          _.bind(function(results) {
            this.$el.append(this.template({articles: results.models}));
-           // the first time we might need more than one page of articles
-           if (this.el.scrollHeight > this.$el.height()) {
-             this.isLoading = false;
-           } else {
-             this.articles.page++;
-             this.loadResults();
-           }
+           this.isLoading = false;
+           $('#loading').remove();
          }, this),
          error:
          _.bind(function() {
            this.undelegateEvents();
            this.isLoading = false;
+           $('#loading').remove();
          }, this)
         }
       );
     },
 
     events: {
-      'scroll': 'checkScroll'
+      'click #showEarlier': 'loadMore'
     },
 
-    checkScroll: function() {
-      var triggerPoint = 100; // start loading 100px from the bottom
-      if(!this.isLoading && this.el.scrollTop + this.el.clientHeight + triggerPoint > this.el.scrollHeight) {
+    loadMore: function() {
+      if (!this.isLoading) {
         this.articles.page++;
         this.loadResults();
       }
