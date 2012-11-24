@@ -5,18 +5,15 @@
     <title>Sean's Blog</title>
     <meta name="description" content="C/C++, JavaScript, Python, Internet, electromusic, bartending, etc.">
     <meta name="viewport" content="width=device-width">
-    <link href="style.css" rel="stylesheet">
-    <link href="print.css" rel="stylesheet" media="print">
-    <link href="shCore.css" rel="stylesheet" type="text/css">
-    <link href="shThemeMidnight.css" rel="stylesheet" type="text/css">
-    <script src="shCore.js" type="text/javascript"></script>
-    <script src="shBrushJScript.js" type="text/javascript"></script>
-    <script src="shBrushCpp.js" type="text/javascript"></script>
-    <script src="shBrushBash.js" type="text/javascript"></script>
-    <script src="shBrushPython.js" type="text/javascript"></script>
-    <script src="shBrushXml.js" type="text/javascript"></script>
-    <script src="shBrushPlain.js" type="text/javascript"></script>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/print.css" rel="stylesheet" media="print">
+    <link href="css/shCore.css" rel="stylesheet" type="text/css">
+    <link href="css/shThemeMidnight.css" rel="stylesheet" type="text/css">
     <link href="favicon.ico" rel="icon" type="image/x-icon">
+  </head>
+  <body>
+    <div id="container"></div>
+    <script data-main="js/main" src="js/libs/require/require-2.1.2.js"></script>
     <script>
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-34437927-1']);
@@ -28,9 +25,5 @@
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
     </script>
-    <script data-main="js/main" src="js/libs/require/require.js"></script>
-  </head>
-  <body>
-    <div id="container"></div>
   </body>
 </html>

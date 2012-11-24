@@ -2,7 +2,7 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'js/models/categories.js',
+  'models/categories',
   'text!templates/header.html'
 ], function($, _, Backbone, Categories, headerTemplate){
   var HeaderView = Backbone.View.extend({

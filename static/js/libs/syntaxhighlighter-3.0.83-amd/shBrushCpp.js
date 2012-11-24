@@ -1,7 +1,24 @@
+define(function (require, exports, module) {
+/**
+ * SyntaxHighlighter
+ * http://alexgorbatchev.com/SyntaxHighlighter
+ *
+ * SyntaxHighlighter is donationware. If you are using it, please donate.
+ * http://alexgorbatchev.com/SyntaxHighlighter/donate.html
+ *
+ * @version
+ * 3.0.83 (July 02 2010)
+ * 
+ * @copyright
+ * Copyright (C) 2004-2010 Alex Gorbatchev.
+ *
+ * @license
+ * Dual licensed under the MIT and GPL licenses.
+ */
 ;(function()
 {
 	// CommonJS
-	SyntaxHighlighter = SyntaxHighlighter || (typeof require !== 'undefined'? require('shCore').SyntaxHighlighter : null);
+	typeof(require) != 'undefined' ? SyntaxHighlighter = require('shCore').SyntaxHighlighter : null;
 
 	function Brush()
 	{
@@ -32,7 +49,7 @@
 						'time_t __time64_t _timeb __timeb64 tm uintptr_t _utimbuf ' +
 						'va_list wchar_t wctrans_t wctype_t wint_t signed';
 
-		var keywords =	'auto break case catch class const decltype __finally __exception __try ' +
+		var keywords =	'break case catch class const __finally __exception __try ' +
 						'const_cast continue private public protected __declspec ' +
 						'default delete deprecated dllexport dllimport do dynamic_cast ' +
 						'else enum explicit extern if for friend goto inline ' +
@@ -79,3 +96,5 @@
 	// CommonJS
 	typeof(exports) != 'undefined' ? exports.Brush = Brush : null;
 })();
+
+});
