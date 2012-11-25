@@ -6,7 +6,7 @@ var app = express();
 
 app.configure(function() {
   app.set('port', process.env.PORT || 10000);
-  app.use('/blog', mdblog('/blog', __dirname + '/articles', __dirname + '/static'));
+  app.use('/blog', mdblog('/blog', __dirname + '/articles', __dirname + '/build'));
 });
 
 http.createServer(app).listen(app.get('port'), function() {
