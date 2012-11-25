@@ -5,7 +5,8 @@ define([
 ], function($, _, Backbone){
   var Articles = Backbone.Collection.extend({
     url: function() {
-      return 'api/articles/' + (this.category ? this.category + '/' : '') + '?page=' + this.page;
+      return 'api/articles/' + (this.category ? this.category + '/' : '')
+        + '?page=' + this.page + (this.search ? '&search=' + this.search : '');
     },
     parse: function(resp, xhr) {
       return resp.articles;

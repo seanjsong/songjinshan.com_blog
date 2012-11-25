@@ -10,6 +10,7 @@ define([
       this.isLoading = false; // a flag to make sure we don't send more than one request at the same time
       this.articles = new Articles();
       this.articles.category = this.options.category;
+      this.articles.search = this.options.search;
       this.$el.empty();
       $('title').text('Sean\'s Blog' + (this.options.category ? ' - ' + this.options.category : ''));
     },

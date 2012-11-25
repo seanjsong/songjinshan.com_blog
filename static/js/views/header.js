@@ -20,11 +20,16 @@ define([
       );
     },
     events: {
-      'click a': 'highlightMenuItem'
+      'click a': 'highlightMenuItem',
+      'keydown input': 'enterSearch'
     },
     highlightMenuItem: function(ev) {
       $('.currentCategory').removeClass('currentCategory');
       $(ev.currentTarget).addClass('currentCategory');
+    },
+    enterSearch: function(ev) {
+      if (ev.keyCode == 13)
+        location.hash='!/search/' + $(ev.target).val() + '/';
     }
   });
 

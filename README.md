@@ -17,6 +17,7 @@ $ r.js -o build.js
 Install Riak first, set port to 8098 and run. Then: 
 
 ```
+$ search-cmd install blog # install riak search precommit hook
 $ cd songjinshan.com_blog
 $ node app
 ```

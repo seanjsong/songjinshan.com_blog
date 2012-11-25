@@ -305,20 +305,18 @@ a:hover {text-decoration: underline;}
 .headerTitle:hover {text-decoration: none;}
 
 .headerMenu {
-  max-width: 800px;
+  max-width: 1000px;
   text-align: right;
   padding: 0;
   margin: 3px 0 0 0;
 }
 
-.headerMenuItem { display: inline; border-right: 1px solid white; padding: 0 0.33em; }
-.headerMenuItem:first-child { border-left: 1px solid white; }
-
+.headerMenuItem { display: inline; border-left: 1px solid white; padding: 0 0.33em; }
 .headerMenuLink { color: white; }
 .headerMenuLink.currentCategory { text-decoration: underline; }
 
 #main {
-  float: left;
+  float: right;
   width: 64%;
   margin: 0 2% 0 4%;
 }
@@ -392,7 +390,7 @@ a:hover {text-decoration: underline;}
 .article ul, .article ol { list-style-position: inside; }
 
 #sidebar {
-  float: left;
+  float: right;
   width: 26%;
   margin: 0 4% 0 0;
 }

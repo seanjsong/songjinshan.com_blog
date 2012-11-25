@@ -3,4 +3,5 @@
   <% _.each(categories, function(category) { %>
   <li class="headerMenuItem"><a class="headerMenuLink" href="#!/<%= category[0] %>/"><%= category[0] %>(<%= category[1] %>)</a></li>
   <% }); %>
+  <li class="headerMenuItem"><input type="search" placeholder="Search..." results="5"></li>
 </ul>
