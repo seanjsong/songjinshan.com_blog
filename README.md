@@ -8,7 +8,7 @@ A single-page app utilizing [mdblog](https://github.com/seansoong/mdblog.git) as
 $ git clone https://github.com/seansoong/songjinshan.com_blog.git
 $ cd songjinshan.com_blog
 $ npm install
-$ npm install -g requirejs
+$ sudo npm install -g requirejs
 $ r.js -o build.js
 ```
 
