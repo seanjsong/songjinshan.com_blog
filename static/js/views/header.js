@@ -21,7 +21,11 @@ define([
     },
     events: {
       'click a': 'highlightMenuItem',
+      'click .headerToggleMenu': 'toggleMenu',
       'keydown input': 'enterSearch'
+    },
+    toggleMenu: function(ev) {
+      $('.headerMenu').toggle();
     },
     highlightMenuItem: function(ev) {
       $('.currentCategory').removeClass('currentCategory');

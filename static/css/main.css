@@ -301,22 +301,33 @@ a:hover {text-decoration: underline;}
   box-shadow: 0px 10px 10px rgba(0,0,0,0.10), inset 0px -1px 0px rgba(255,255,255,0.20);
 }
 
-.headerTitle { color: white; font-size: 2em; font-weight: bold; line-height: 1; display: block; }
+.headerTitle { color: white; font-size: 2em; font-weight: bold; line-height: 1; display: block; padding-bottom: 5px;}
 .headerTitle:hover {text-decoration: none;}
 
-.headerMenu {
+.headerNavigator {
   max-width: 1000px;
-  text-align: right;
   padding: 0;
   margin: 3px 0 0 0;
+}
+
+.headerToggleMenu {
+  display: none;
+}
+
+.headerMenu {
+  float: right;
+  padding: 0;
+  margin: 0;
 }
 
 .headerMenuItem { display: inline; border-left: 1px solid white; padding: 0 0.33em; }
 .headerMenuLink { color: white; }
 .headerMenuLink.currentCategory { text-decoration: underline; }
 
+.headerSearch { width: 150px; float: right }
+
 #main {
-  float: right;
+  float: left;
   width: 64%;
   margin: 0 2% 0 4%;
 }
@@ -414,7 +425,7 @@ a:hover {text-decoration: underline;}
   font-size: 12px;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 750px) {
   #main {
     float: none;
     width: auto;
@@ -430,6 +441,41 @@ a:hover {text-decoration: underline;}
   }
   #header .tagline {
     font-size: 10px;
+  }
+
+  .headerToggleMenu {
+    display: block;
+    color: white;
+    float: right;
+    margin: 0;
+    padding: 0;
+  }
+
+  .headerMenu {
+    position: absolute;
+    left: 70px;
+    top: 70px;
+    z-index: 999;
+    display: none;
+    padding: 0;
+    margin: 0;
+    background-color: #000433;
+  }
+
+  .headerMenuItem { display: block; border-left: 1px solid white; padding: 0 0.33em; }
+  .headerMenuLink { color: white; }
+  .headerMenuLink.currentCategory { text-decoration: underline; }
+
+  .headerSearch { width: 150px; float: right }
+
+  .article h1 {
+    margin: 0;
+    padding: 15px 10px 0;
+    border-bottom: 0;
+    font-size: 1.25em;
+  }
+  .hiddenOnPhone {
+      display: none;
   }
 }
 

@@ -1,7 +1,10 @@
 <a class="headerTitle" href="#!/">Sean's Blog</a>
+<div class="headerNavigator clearfix">
+<input class="headerSearch" type="search" placeholder="Search..." results="5">
 <ul class="headerMenu">
   <% _.each(categories, function(category) { %>
   <li class="headerMenuItem"><a class="headerMenuLink" href="#!/<%= category[0] %>/"><%= category[0] %>(<%= category[1] %>)</a></li>
   <% }); %>
-  <li class="headerMenuItem"><input type="search" placeholder="Search..." results="5"></li>
 </ul>
+<button class="headerToggleMenu">Menu &#9660;</button>
+</div>

@@ -14,10 +14,12 @@ $ r.js -o build.js
 
 ## Run
 
-Install Riak first, set port to 8098 and run. Then: 
+Install Riak first: edit Riak config file, set http port to 8098 and enable search, then start Riak.
+
+Then:
 
 ```
-$ search-cmd install blog # install riak search precommit hook
+$ search-cmd install blog # install riak search precommit hook for bucket "blog"
 $ cd songjinshan.com_blog
 $ node app
 ```
@@ -25,3 +27,5 @@ $ node app
 ## TODO
 
 * disqus is no longer functional in single-page app, need a way to fix it
+* issue: when update an article and then node app, the updated article will only be removed, node app again then it will be added
+* search index seems incomplete, case sensitive, and cannot paginate

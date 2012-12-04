@@ -2,8 +2,8 @@
 <div class="article">
   <div title="<%= (new Date(article.get('mtime'))).toLocaleString() %>" class="date"><%= (new Date(article.get('mtime'))).toLocaleDateString() %></div>
   <h1><a href="#!/<%= article.get('category') %>/<%= article.get('slug') %>/"><%= article.get('title') %></a></h1>
-  <%= article.get('excerpt') %>
-  <div><a href="#!/<%= article.get('category') %>/<%= article.get('slug') %>/" class="more">read more »</a></div>
+  <div class="hiddenOnPhone"><%= article.get('excerpt') %></div>
+  <div class="hiddenOnPhone"><a href="#!/<%= article.get('category') %>/<%= article.get('slug') %>/" class="more">read more »</a></div>
 </div>
 <% }); %>
 <a id="showEarlier">Show earlier articles »</a>
