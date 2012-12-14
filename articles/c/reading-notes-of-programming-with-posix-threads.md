@@ -64,6 +64,7 @@ int thd_suspend(pthread_t target_thread)
         sched_yield();
     ...
 }
+```
 
 > The variable sentinel is used to synchronize between a signal-catching function and another thread ... Remember, you cannot use a mutex within a signal-catching function.
 
