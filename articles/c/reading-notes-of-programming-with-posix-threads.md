@@ -4,11 +4,13 @@
 
 ![Book Cover](bookcover.jpg)
 
+This book is informative and accurate, should be a must-read for pthread programmers. But there's one thing I don't like: too many implications. The author should spell his claims more loudly and explicitly.
+
 ## Memory Visibility
 
 > Consider, for example, a thread that writes new data to an element in an array, and then updates a `max_index` variable to indicate that the array element is valid. Now consider another thread, running simultaneously on another processor, that steps through the array performing some computation on each valid element. If the second thread "sees" the new value of `max_index` before it sees the new value of the array element, the computation would be incorrect. This may seem irrational, but memory systems that work this way can be substantially faster than memory systems that guarantee predictable ordering of memory accesses. A mutex is one general solution to this sort of problem. If each thread locks a mutex around the section of code that's using shared data, only one thread will be able to enter the section at a time.
 
-This implies that the implementation of mutex contains a memory barrier. Later the book explains,
+This implies that the implementation of mutex contains a memory barrier. Several sections later the book explains further,
 
 > A common misconception about memory barriers is that they "flush" values to main memory, thus ensuring that the values are visible to other processors. That is not the case, however. What memory barriers do is ensure an order between sets of operations. If each memory access is an item in a queue, you can think of memory barrier as a special queue token. Unlike other memory accesses, however, the memory controller cannot remove the barrier, or look past it, until it has completed all previous accesses.
 
@@ -28,7 +30,7 @@ Besides mutex lock/unlock, many other thread operations also involve memory barr
 
 That means these synchronization operations all contain memory barriers. I understand the author tries to describe in a platform-independent way, but I think he should talk about memory barrier more explicitly.
 
-## Atomicity
+## Atomicity and volatile
 
 > Even without read/write ordering and memory barriers, it may seem that writes to a single memory address must be atomic, meaning that another thread will always see either the intact original value or the intact new value. But that's not always true, either. Most computers have a natural memory granularity, which depends on the organization of memory and the bus architecture. Even if the processor naturally reads and writes 8-bit units, memory transfers may occur in 32- or 64-bit "memory units".
 
@@ -38,7 +40,40 @@ The book then gives two examples which I'll brief here.
 
 2. Word tearing. Suppose natural memory width is 32-bit. The original 32-bit in memory is xx xx 00 01 02 03 xx xx. Thread 1 change the unaligned 32-bit 00 01 02 03 to 00 14 02 03, while at the same time thread 2 change this 32-bit to 00 01 25 03. Unaligned memory access might be split into multiple accesses. Suppose thread 2 first writes down xx xx 00 01 unchanged, then thread 1 write xx xx 00 14, then thread 1 write down 02 03 xx xx unchanged, then thread 2 write 25 03 xx xx - the final result will be xx xx 00 14 25 03 xx xx, this is not an intended new value (we intend to get either 00 01 02 03 or 00 01 25 03). I know unaligned memory access isn't permitted at all on some RISC architectures, so this example can probably happen on CISC architectures.
 
-In one word, even when accessing a single variable, consider using mutex lock instead of assuming it's an atomic operation. But I still have one question left: if I avoid these edge cases, only accessing an aligned memory of natural width, can I guarantee atomicity?
+In one word, even when accessing a single variable, consider using mutex lock instead of assuming it's an atomic operation. But this still leaves open another question: if we avoid these edge cases (only accessing aligned memory of natural width), and if we don't care when the modified memory will be visible to another thread (sooner or later it will), can we at least guarantee atomicity? (Of course in this case we should use the `volatile` qualifier, to ensure that compiler should not optimize out any memory access.) Well, the book implies the answer is yes but doesn't recommend it. `volatile` appears only once in the book:
+
+```c
+volatile int sentinel = 0;
+
+void suspend_signal_handler(int sig)
+{
+    ...
+    sentinel = 1;
+    sigsuspend(&signal_set);
+    ...
+}
+
+int thd_suspend(pthread_t target_thread)
+{
+    ...
+    /* Clear the sentinel and signal the thread to suspend. */
+    sentinel = 0;
+    pthead_kill(target_thread, SIGUSR1);
+    /* Wait for the sentinel to change. */
+    while (sentinel == 0)
+        sched_yield();
+    ...
+}
+
+> The variable sentinel is used to synchronize between a signal-catching function and another thread ... Remember, you cannot use a mutex within a signal-catching function.
+
+> * A semaphore, as described later in Section 6.6.6, would provide a clearer, and somewhat safer, synchronization. The `thd_suspend` would call `sem_wait` on a semaphore with an initial value of 0, and the signal-catching function would call `sem_post` to wake it.
+
+A similar usage of `volatile` can be spotted in the case of Linux kernel's `jiffies` variable, as stated in <http://kernel.org/doc/Documentation/volatile-considered-harmful.txt>:
+
+> Jiffies is considered to be a "stupid legacy" issue (Linus's words) in this regard; fixing it would be more trouble than it is worth.
+
+This document strongly claims, from all aspects, that `volatile` types should not be used as a sort of easy atomic variable.
 
 ## About the Unlocking Order of Mutex
 
