@@ -7,6 +7,10 @@
   },
   "dependencies": {
     "express": "3.0.3",
-    "mdblog": "https://github.com/seansoong/mdblog/tarball/master"
+    "mongodb": "latest",
+    "synchronize": "latest",
+    "marked": "latest",
+    "underscore": "latest",
+    "async": "latest"
   }
 }
