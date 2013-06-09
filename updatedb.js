@@ -131,7 +131,7 @@ exports = module.exports = function(blogCollection, articlesDir, cb) {
     },
     function(slugsFs, slugsDb, cb) {
       function dbRemove(key) {
-        blogCollection.findAndModify({'_id': key}, {'remove': true}, function(err) {
+        blogCollection.remove({'_id': key}, function(err) {
           if (err) {console.log('Removing: ' + key + ' ' + err); return;}
           console.log('Removed: ' + key);
         });
@@ -177,7 +177,7 @@ exports = module.exports = function(blogCollection, articlesDir, cb) {
       // save outstanding articles in fs to db
       async.each(_.pairs(slugsFs), // [['category1_slug1', mtime1], ['category1_slug2', mtime2], ['category2_slug1', mtime3]]
                  function(categorySlugPair, cb) {
-                   if (!slugsDb[categorySlugPair[0]] || slugsDb[categorySlugPair[0]] !== categorySlugPair[1])
+                   if (!slugsDb[categorySlugPair[0]])
                      updateArticle(blogCollection, articlesDir, categorySlugPair[0] + '_' + categorySlugPair[1], cb);
                    else
                      cb(null);
